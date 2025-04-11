@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - {% if settings.site_title %}{{ settings.site_title }}{% else %}Portfolio Blog{% endif %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/themes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% if settings.theme %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' + settings.theme + '.css') }}">
+    {% endif %}
+</head>
+<body class="theme-{{ settings.theme if settings.theme else 'happy-green' }}">
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">View Site</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="admin-nav container">
+            <a href="{{ url_for('admin_dashboard') }}" class="admin-nav-item {% if request.path == url_for('admin_dashboard') %}active{% endif %}">Posts</a>
+            <a href="{{ url_for('new_post') }}" class="admin-nav-item {% if request.path == url_for('new_post') %}active{% endif %}">New Post</a>
+            <a href="{{ url_for('edit_settings') }}" class="admin-nav-item {% if request.path == url_for('edit_settings') %}active{% endif %}">Settings</a>
+        </div>
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
