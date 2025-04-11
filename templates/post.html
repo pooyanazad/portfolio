@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="single-post">
+    <div class="container">
+        <article>
+            <h1>{{ post.title }}</h1>
+            <div class="post-meta">
+                <span class="date">{{ post.date_posted.strftime('%B %d, %Y') }}</span>
+            </div>
+            <div class="post-content">
+                {{ post.content | safe }}
+            </div>
+        </article>
+        <div class="post-navigation">
+            <a href="{{ url_for('home') }}" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
