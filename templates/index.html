@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero" {% if settings.cover_photo %}style="background-image: url('{{ url_for('static', filename=settings.cover_photo) }}');"{% endif %}>
+    <div class="container">
+        <div class="hero-content">
+            <div class="profile-container">
+                {% if settings.profile_pic %}
+                <img src="{{ url_for('static', filename=settings.profile_pic) }}" alt="Profile Picture" class="profile-pic">
+                {% else %}
+                <div class="profile-pic-placeholder">
+                    <i class="fas fa-user"></i>
+                </div>
+                {% endif %}
+            </div>
+            <h1>{{ settings.site_title }}</h1>
+            <div class="about-me">
+                {{ settings.about_me | safe }}
+            </div>
+            <div class="social-links">
+                {% if settings.github %}
+                <a href="{{ settings.github }}" target="_blank"><i class="fab fa-github"></i></a>
+                {% endif %}
+                {% if settings.linkedin %}
+                <a href="{{ settings.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                {% endif %}
+                {% if settings.twitter %}
+                <a href="{{ settings.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                {% endif %}
+                {% if settings.email %}
+                <a href="mailto:{{ settings.email }}"><i class="fas fa-envelope"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog-posts">
+    <div class="container">
+        <h2>Latest Posts</h2>
+        <div class="posts-grid">
+            {% if posts %}
+                {% for post in posts %}
+                <div class="post-card">
+                    <h3>{{ post.title }}</h3>
+                    <div class="post-meta">
+                        <span class="date">{{ post.date_posted.strftime('%B %d, %Y') }}</span>
+                    </div>
+                    <div class="post-excerpt">
+                        {{ post.content[:150] + '...' if post.content|length > 150 else post.content }}
+                    </div>
+                    <a href="{{ url_for('post', post_id=post.id) }}" class="read-more">Read More</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-posts">No posts yet. Check back soon!</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
