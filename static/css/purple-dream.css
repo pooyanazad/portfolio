@@ -1,0 +1,98 @@
+/* Purple Dream Theme */
+:root {
+    --primary-color: #9C27B0;
+    --primary-dark: #7B1FA2;
+    --primary-light: #CE93D8;
+    --accent-color: #FFC107;
+    --text-color: #333333;
+    --text-light: #666666;
+    --bg-color: #FFFFFF;
+    --bg-alt: #F5F5F5;
+    --border-color: #E0E0E0;
+}
+
+body.theme-purple-dream {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+.theme-purple-dream a {
+    color: var(--primary-color);
+}
+
+.theme-purple-dream a:hover {
+    color: var(--primary-dark);
+}
+
+.theme-purple-dream header {
+    background-color: var(--bg-color);
+}
+
+.theme-purple-dream .logo a {
+    color: var(--primary-color);
+}
+
+.theme-purple-dream .nav-links a {
+    color: var(--text-color);
+}
+
+.theme-purple-dream .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.theme-purple-dream .hero {
+    background-color: var(--primary-color);
+}
+
+.theme-purple-dream .btn-primary {
+    background-color: var(--primary-color);
+}
+
+.theme-purple-dream .btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.theme-purple-dream .post-card {
+    background-color: var(--bg-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+}
+
+.theme-purple-dream .post-card h3 {
+    color: var(--primary-color);
+}
+
+.theme-purple-dream .read-more {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.theme-purple-dream .read-more:hover {
+    color: var(--primary-dark);
+}
+
+.theme-purple-dream .social-links a {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.theme-purple-dream .social-links a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.theme-purple-dream footer {
+    background-color: var(--bg-alt);
+    color: var(--text-light);
+}
+
+.theme-purple-dream .login-form-container {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+.theme-purple-dream .admin-nav-item.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
