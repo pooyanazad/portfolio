@@ -1,0 +1,123 @@
+/* Dark Grey Theme */
+:root {
+    --primary-color: #607D8B;
+    --primary-dark: #455A64;
+    --primary-light: #B0BEC5;
+    --accent-color: #FFC107;
+    --text-color: #E0E0E0;
+    --text-light: #BDBDBD;
+    --bg-color: #212121;
+    --bg-alt: #303030;
+    --border-color: #424242;
+}
+
+body.theme-dark-grey {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+.theme-dark-grey a {
+    color: var(--primary-light);
+}
+
+.theme-dark-grey a:hover {
+    color: var(--accent-color);
+}
+
+.theme-dark-grey header {
+    background-color: var(--bg-alt);
+}
+
+.theme-dark-grey .logo a {
+    color: var(--primary-light);
+}
+
+.theme-dark-grey .nav-links a {
+    color: var(--text-color);
+}
+
+.theme-dark-grey .nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.theme-dark-grey .hero {
+    background-color: var(--primary-dark);
+}
+
+.theme-dark-grey .btn-primary {
+    background-color: var(--primary-color);
+}
+
+.theme-dark-grey .btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.theme-dark-grey .post-card {
+    background-color: var(--bg-alt);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+}
+
+.theme-dark-grey .post-card h3 {
+    color: var(--primary-light);
+}
+
+.theme-dark-grey .read-more {
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+.theme-dark-grey .read-more:hover {
+    color: var(--accent-color);
+}
+
+.theme-dark-grey .social-links a {
+    background-color: var(--bg-alt);
+    color: var(--primary-light);
+}
+
+.theme-dark-grey .social-links a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.theme-dark-grey footer {
+    background-color: var(--bg-alt);
+    color: var(--text-light);
+}
+
+.theme-dark-grey .login-form-container {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border-color);
+}
+
+.theme-dark-grey .admin-nav-item.active {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+.theme-dark-grey .form-group input[type="text"],
+.theme-dark-grey .form-group input[type="email"],
+.theme-dark-grey .form-group input[type="password"],
+.theme-dark-grey .form-group input[type="url"],
+.theme-dark-grey .form-group textarea,
+.theme-dark-grey .form-group select {
+    background-color: var(--bg-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.theme-dark-grey .posts-table th,
+.theme-dark-grey .posts-table td {
+    border-color: var(--border-color);
+}
+
+.theme-dark-grey .btn-secondary {
+    background-color: var(--bg-alt);
+    color: var(--text-color);
+}
+
+.theme-dark-grey .btn-secondary:hover {
+    background-color: var(--border-color);
+}
