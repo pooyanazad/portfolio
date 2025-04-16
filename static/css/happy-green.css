@@ -1,0 +1,98 @@
+/* Happy Green Theme */
+:root {
+    --primary-color: #4CAF50;
+    --primary-dark: #388E3C;
+    --primary-light: #A5D6A7;
+    --accent-color: #FFC107;
+    --text-color: #333333;
+    --text-light: #666666;
+    --bg-color: #FFFFFF;
+    --bg-alt: #F5F5F5;
+    --border-color: #E0E0E0;
+}
+
+body.theme-happy-green {
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+.theme-happy-green a {
+    color: var(--primary-color);
+}
+
+.theme-happy-green a:hover {
+    color: var(--primary-dark);
+}
+
+.theme-happy-green header {
+    background-color: var(--bg-color);
+}
+
+.theme-happy-green .logo a {
+    color: var(--primary-color);
+}
+
+.theme-happy-green .nav-links a {
+    color: var(--text-color);
+}
+
+.theme-happy-green .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.theme-happy-green .hero {
+    background-color: var(--primary-color);
+}
+
+.theme-happy-green .btn-primary {
+    background-color: var(--primary-color);
+}
+
+.theme-happy-green .btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.theme-happy-green .post-card {
+    background-color: var(--bg-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+}
+
+.theme-happy-green .post-card h3 {
+    color: var(--primary-color);
+}
+
+.theme-happy-green .read-more {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.theme-happy-green .read-more:hover {
+    color: var(--primary-dark);
+}
+
+.theme-happy-green .social-links a {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.theme-happy-green .social-links a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.theme-happy-green footer {
+    background-color: var(--bg-alt);
+    color: var(--text-light);
+}
+
+.theme-happy-green .login-form-container {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+.theme-happy-green .admin-nav-item.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
