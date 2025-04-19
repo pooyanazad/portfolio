@@ -48,69 +48,84 @@ class SiteSettings(db.Model):
 # Initialize database and create admin user
 def create_tables():
     with app.app_context():
-        # Check if we need to add new columns
-        inspector = db.inspect(db.engine)
-        has_custom_link_columns = all(
-            column in [c['name'] for c in inspector.get_columns('site_settings')]
-            for column in ['custom_link_name', 'custom_link_url']
-        )
+        # First check if the database file exists
+        db_exists = os.path.exists('instance/blog.db')
         
-        # If the custom link columns don't exist, we need to recreate the database
-        if not has_custom_link_columns and os.path.exists('instance/blog.db'):
-            # Backup existing data
-            existing_settings = None
-            existing_users = []
-            existing_posts = []
-            
-            try:
-                # Try to get existing data before schema change
-                existing_settings = db.session.query(SiteSettings).first()
-                existing_users = db.session.query(User).all()
-                existing_posts = db.session.query(Post).all()
-                
-                # Convert to dictionaries to preserve data
-                if existing_settings:
-                    existing_settings = {c.name: getattr(existing_settings, c.name) 
-                                        for c in existing_settings.__table__.columns 
-                                        if c.name not in ['custom_link_name', 'custom_link_url']}
-                
-                existing_users = [{c.name: getattr(user, c.name) for c in user.__table__.columns} 
-                                for user in existing_users]
-                
-                existing_posts = [{c.name: getattr(post, c.name) for c in post.__table__.columns} 
-                                for post in existing_posts]
-                
-            except Exception as e:
-                print(f"Error backing up data: {e}")
-            
-            # Close session and drop all tables
-            db.session.close()
-            db.drop_all()
-            
-            # Recreate tables with new schema
+        # If database doesn't exist, just create all tables
+        if not db_exists:
             db.create_all()
-            
-            # Restore data
-            if existing_settings:
-                settings = SiteSettings(**existing_settings)
-                db.session.add(settings)
-            
-            for user_data in existing_users:
-                user = User(**user_data)
-                db.session.add(user)
-            
-            for post_data in existing_posts:
-                post = Post(**post_data)
-                db.session.add(post)
-            
-            db.session.commit()
-            print("Database schema updated successfully!")
         else:
-            # Normal initialization
-            db.create_all()
+            # Database exists, check if we need to update schema
+            try:
+                inspector = db.inspect(db.engine)
+                # Check if site_settings table exists
+                if 'site_settings' in inspector.get_table_names():
+                    # Check if the new columns exist
+                    has_custom_link_columns = all(
+                        column in [c['name'] for c in inspector.get_columns('site_settings')]
+                        for column in ['custom_link_name', 'custom_link_url']
+                    )
+                    
+                    # If the custom link columns don't exist, we need to recreate the database
+                    if not has_custom_link_columns:
+                        # Backup existing data
+                        existing_settings = None
+                        existing_users = []
+                        existing_posts = []
+                        
+                        try:
+                            # Try to get existing data before schema change
+                            existing_settings = db.session.query(SiteSettings).first()
+                            existing_users = db.session.query(User).all()
+                            existing_posts = db.session.query(Post).all()
+                            
+                            # Convert to dictionaries to preserve data
+                            if existing_settings:
+                                existing_settings = {c.name: getattr(existing_settings, c.name) 
+                                                for c in existing_settings.__table__.columns 
+                                                if c.name not in ['custom_link_name', 'custom_link_url']}
+                            
+                            existing_users = [{c.name: getattr(user, c.name) for c in user.__table__.columns} 
+                                            for user in existing_users]
+                            
+                            existing_posts = [{c.name: getattr(post, c.name) for c in post.__table__.columns} 
+                                            for post in existing_posts]
+                            
+                        except Exception as e:
+                            print(f"Error backing up data: {e}")
+                        
+                        # Close session and drop all tables
+                        db.session.close()
+                        db.drop_all()
+                        
+                        # Recreate tables with new schema
+                        db.create_all()
+                        
+                        # Restore data
+                        if existing_settings:
+                            settings = SiteSettings(**existing_settings)
+                            db.session.add(settings)
+                        
+                        for user_data in existing_users:
+                            user = User(**user_data)
+                            db.session.add(user)
+                        
+                        for post_data in existing_posts:
+                            post = Post(**post_data)
+                            db.session.add(post)
+                        
+                        db.session.commit()
+                        print("Database schema updated successfully!")
+                else:
+                    # Table doesn't exist, create all tables
+                    db.create_all()
+            except Exception as e:
+                print(f"Error checking schema: {e}")
+                # If any error occurs during inspection, just create all tables
+                db.create_all()
         
         # Check if admin user exists, if not create one
-        if not User.query.filter_by(username="poyan").first():
+        if not User.query.filter_by(username="pooyan").first():
             admin = User(
                 username="pooyan",
                 password_hash=generate_password_hash("StrongPaas4")
@@ -120,7 +135,7 @@ def create_tables():
             # Add default site settings
             if not SiteSettings.query.first():
                 settings = SiteSettings(
-                    site_title="Poyan's Portfolio",
+                    site_title="Pooyan's Portfolio",
                     about_me="I'm a passionate developer who loves creating beautiful web applications.",
                     theme="happy-green"
                 )
@@ -286,5 +301,5 @@ def edit_settings():
     return render_template('admin/settings.html', settings=settings)
 
 if __name__ == '__main__':
-    create_tables() 
+    create_tables()  # Call the function to initialize database before running the app
     app.run(debug=True)
