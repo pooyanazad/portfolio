@@ -25,7 +25,7 @@ Hey there! 👋 This is my Flask-powered portfolio blog with a simple admin pane
    python app.py
    ```
 2. Login at /login with:
-   - Username: poyan
+   - Username: pooyan
    - Password: StrongPaas4 (change this ASAP!)
 ## Deployment
 I've automated everything:
