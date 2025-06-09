@@ -1,0 +1,37 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# Logs and local databases
+*.log
+*.db
+*.sqlite
+
+# Environment variables
+.env
+
+# Flask instance folder
+instance/
+
+# Static uploads
+static/images/uploads/
+
+# Editor directories and files
+.vscode/
+.idea/
+.DS_Store
+
+# Pytest cache
+.pytest_cache/
+
+# Terraform state
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/.terraform/
